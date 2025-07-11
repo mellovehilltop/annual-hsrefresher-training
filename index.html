@@ -859,74 +859,122 @@
         </div>
     </div>
     
-    <script>
-        // Progress tracking
-        let completedSections = 0;
-        // CHANGE: Updated totalSections to 7 to include the new Machine Safety section
-        const totalSections = 7; 
+   <script>
+    // --- ACCORDION AND PROGRESS LOGIC (with fix included) ---
+    const totalSections = 7; // Total number of learnable sections
+
+    function toggleSection(header) {
+        const section = header.parentElement;
         
-        function toggleSection(header) {
-            const section = header.parentElement;
-            const content = section.querySelector('.section-content');
-            const icon = header.querySelector('.toggle-icon');
-            
-            // Close other sections
-            document.querySelectorAll('.section').forEach(s => {
-                if (s !== section && s.classList.contains('active')) {
-                   // s.classList.remove('active'); // Optional: Uncomment if you want only one section open at a time
-                }
-            });
-            
-            // Toggle current section
-            section.classList.toggle('active');
-            
-            // Update progress if section is being opened for first time
-            if (section.classList.contains('active') && !section.hasAttribute('data-completed')) {
-                // We only count the main learning sections, not the final summary
-                const isLearningSection = !section.querySelector('h2').textContent.includes('Summary');
-                if (isLearningSection) {
-                    section.setAttribute('data-completed', 'true');
-                    updateProgress();
-                }
-            }
-        }
-        
-        function updateProgress() {
-            completedSections = document.querySelectorAll('.section[data-completed]').length;
-            const percentage = Math.round((completedSections / totalSections) * 100);
-            const progressBar = document.getElementById('progressBar');
-            
-            progressBar.style.width = percentage + '%';
-            progressBar.textContent = percentage + '% Complete';
-            
-            if (percentage >= 100) {
-                progressBar.textContent = '🎉 Training Complete!';
-                progressBar.style.background = 'linear-gradient(90deg, #28a745, #20c997)';
-            }
-        }
-        
-        function revealContent(id) {
-            const content = document.getElementById(id);
-            const parent = content.parentElement;
-            
-            if (content.style.display === 'block') {
-                content.style.display = 'none';
-                parent.style.background = '#e3f2fd';
-            } else {
-                content.style.display = 'block';
-                parent.style.background = '#bbdefb';
-            }
-            event.stopPropagation(); // Prevents the section from closing when clicking the interactive element
-        }
-        
-        // Initialize first section as open and completed
-        document.addEventListener('DOMContentLoaded', function() {
-            const firstSection = document.querySelector('.section');
-            if (firstSection) {
-                firstSection.setAttribute('data-completed', 'true');
-                updateProgress();
+        // Close other open sections
+        document.querySelectorAll('.section.active').forEach(openSection => {
+            if (openSection !== section) {
+                openSection.classList.remove('active');
             }
         });
-    </script>
+        
+        section.classList.toggle('active');
+
+        if (section.classList.contains('active')) {
+            header.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        if (section.classList.contains('active') && !section.hasAttribute('data-completed')) {
+            const isLearningSection = !section.querySelector('h2').textContent.includes('Summary');
+            if (isLearningSection) {
+                section.setAttribute('data-completed', 'true');
+                updateProgress();
+            }
+        }
+    }
+
+    function updateProgress() {
+        const completedSections = document.querySelectorAll('.section[data-completed]').length;
+        const percentage = Math.round((completedSections / totalSections) * 100);
+        const progressBar = document.getElementById('progressBar');
+        
+        progressBar.style.width = percentage + '%';
+        progressBar.textContent = percentage + '% Complete';
+        
+        if (percentage >= 100) {
+            progressBar.textContent = '🎉 Training Complete!';
+            progressBar.style.background = 'linear-gradient(90deg, #28a745, #20c997)';
+        }
+    }
+
+    function revealContent(id) {
+        const content = document.getElementById(id);
+        const parent = content.parentElement;
+        
+        if (content.style.display === 'block') {
+            content.style.display = 'none';
+            parent.style.background = '#e3f2fd';
+        } else {
+            content.style.display = 'block';
+            parent.style.background = '#bbdefb';
+        }
+        event.stopPropagation();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize first section as open and completed
+        const firstSection = document.querySelector('.section');
+        if (firstSection) {
+            firstSection.setAttribute('data-completed', 'true');
+            updateProgress();
+        }
+
+        // --- NEW KNOWLEDGE CHECK LOGIC ---
+        const quizButtons = document.querySelectorAll('.quiz-option');
+
+        quizButtons.forEach(button => {
+            button.addEventListener('click', handleQuizAnswer);
+        });
+    });
+
+    function handleQuizAnswer(event) {
+        const clickedButton = event.target;
+        const knowledgeCheck = clickedButton.closest('.knowledge-check');
+        const feedbackEl = knowledgeCheck.querySelector('.quiz-feedback');
+        
+        // Prevent multiple clicks
+        if (knowledgeCheck.classList.contains('answered')) {
+            return;
+        }
+        knowledgeCheck.classList.add('answered');
+
+        const isCorrect = clickedButton.dataset.correct === 'true';
+
+        if (isCorrect) {
+            // Correct Answer
+            clickedButton.classList.add('correct');
+            feedbackEl.textContent = 'Correct! Well done.';
+            feedbackEl.className = 'quiz-feedback correct';
+
+            // Find the current section and the next one
+            const currentSection = knowledgeCheck.closest('.section');
+            const nextSection = currentSection.nextElementSibling;
+            
+            // Automatically open the next section after a short delay
+            setTimeout(() => {
+                currentSection.classList.remove('active'); // Close current
+                if (nextSection && nextSection.classList.contains('section')) {
+                    // We use .click() to trigger our existing toggleSection logic
+                    nextSection.querySelector('.section-header').click();
+                }
+            }, 1500); // 1.5-second delay
+
+        } else {
+            // Incorrect Answer
+            clickedButton.classList.add('incorrect');
+            feedbackEl.textContent = 'Not quite. Please review the section and try again.';
+            feedbackEl.className = 'quiz-feedback incorrect';
+            
+            // Find the correct button and highlight it so the user learns
+            const correctButton = knowledgeCheck.querySelector('[data-correct="true"]');
+            correctButton.classList.add('correct');
+        }
+    }
+</script>
 </body>
 </html>
