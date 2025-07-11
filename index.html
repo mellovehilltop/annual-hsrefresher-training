@@ -273,6 +273,78 @@
             border-radius: 5px;
             border-left: 3px solid #4CAF50;
         }
+        .knowledge-check {
+    background: #f0f4f8;
+    border: 2px solid #d6e0ea;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.knowledge-check h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.quiz-options {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.quiz-option {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    font-size: 1em;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    background: white;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.quiz-option:hover {
+    background: #e3f2fd;
+    border-color: #bbdefb;
+}
+
+/* Styles for when an answer is chosen */
+.quiz-option.correct {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+    font-weight: bold;
+}
+
+.quiz-option.incorrect {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+.quiz-feedback {
+    min-height: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.quiz-feedback.correct {
+    color: #28a745;
+}
+
+.quiz-feedback.incorrect {
+    color: #dc3545;
+}
+
+/* Disable buttons after choice */
+.knowledge-check.answered .quiz-option {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
     </style>
 </head>
 <body>
@@ -384,7 +456,16 @@
                         <ul><li>Stop the forklift immediately</li><li>Apply the handbrake</li><li>Turn off the engine</li><li>Get help from a supervisor</li><li>Report the incident</li></ul>
                     </div>
                 </div>
-                <div class="completion-badge">✅ Section 2 Complete</div>
+                <div class="knowledge-check" data-section="2">
+    <h4>Knowledge Check</h4>
+    <p>A visitor is walking towards you in the warehouse. What is the most important thing to do?</p>
+    <div class="quiz-options">
+        <button class="quiz-option">Speed up to get past them quickly.</button>
+        <button class="quiz-option" data-correct="true">Make eye contact with them before proceeding.</button>
+        <button class="quiz-option">Shout at them to get out of the way.</button>
+    </div>
+                    <p class="quiz-feedback"></p>
+</div>
             </div>
         </div>
         
