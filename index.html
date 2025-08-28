@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Induction Health & Safety Training - Food Factory Operations</title>
+    <title>Refresher Health & Safety Training - Food Factory Operations</title>
     <style>
         * {
             margin: 0;
@@ -62,7 +62,8 @@
             background: linear-gradient(90deg, #4CAF50, #45a049);
             color: white;
             padding: 20px;
-            cursor: pointer;
+            /* MODIFIED: Cursor is no longer a pointer as it's not clickable */
+            /* cursor: pointer; */ 
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -77,17 +78,9 @@
             transition: transform 0.3s ease;
         }
         
+        /* MODIFIED: The section-content is now displayed by default, as the parent .section controls visibility */
         .section-content {
             padding: 20px;
-            display: none;
-        }
-        
-        .section.active .section-content {
-            display: block;
-        }
-        
-        .section.active .toggle-icon {
-            transform: rotate(180deg);
         }
         
         .intro-section {
@@ -250,7 +243,23 @@
             border-left: 3px solid #4CAF50;
         }
         
-        /* --- NEW STYLES FOR KNOWLEDGE CHECK --- */
+        /* --- NEW STYLES FOR STEPPER --- */
+        .section {
+            display: none; /* Hide all sections by default */
+        }
+
+        .section.active {
+            display: block; /* Show only the active section */
+        }
+        
+        .navigation-controls button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+        
+        /* --- STYLES FOR KNOWLEDGE CHECK --- */
         .knowledge-check {
             background: #f0f4f8;
             border: 2px solid #d6e0ea;
@@ -339,25 +348,27 @@
     <div class="container">
         <!-- Progress Bar -->
         <div class="progress-bar">
-            <div class="progress-fill" id="progressBar">0% Complete</div>
+            <div class="progress-fill" id="progressBar">Step 1 of 8</div>
         </div>
         
         <!-- Introduction Section -->
         <div class="intro-section">
-            <h1>🛡️ Hilltop Honey Induction Health & Safety Training</h1>
+            <!-- MODIFIED: Title changed to "Refresher" -->
+            <h1>🛡️ Hilltop Honey Refresher Health & Safety Training</h1>
             <h2>Food Factory Operations</h2>
-            <p>Welcome to your health and safety training. This course will help keep you and your colleagues safe at work.</p>
+            <p>Welcome to your annual health and safety refresher. This course will verify your knowledge and help keep you and your colleagues safe at work.</p>
         </div>
         
-        <!-- Introduction Section -->
-        <div class="section active">
-            <div class="section-header" onclick="toggleSection(this)">
+        <!-- MODIFIED: "active" class removed. JS will control this. -->
+        <div class="section">
+            <!-- MODIFIED: onclick removed -->
+            <div class="section-header">
                 <h2>📚 Introduction - Why Safety Matters</h2>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="section-content">
                 <div class="safety-tip"><h3>🎯 Your Safety is Everyone's Business</h3><p>Every person in our food factory has a part to play in keeping everyone safe. This includes you!</p></div>
-                <h3>What You'll Learn Today</h3>
+                <h3>What You'll Re-Cover Today</h3>
                 <ul>
                     <li>How to work safely with forklift trucks</li>
                     <li>Safe use of pallet trucks</li>
@@ -368,45 +379,43 @@
                 </ul>
                 <div class="warning-box"><h3>📋 UK Law Says</h3><p>Under the Health and Safety at Work Act 1974, both you and your employer have legal duties:</p><ul><li><strong>Your employer must:</strong> Provide safe equipment, training, and a safe workplace</li><li><strong>You must:</strong> Follow safety rules, use safety equipment, and report dangers</li></ul></div>
                 <div class="image-placeholder"><img src="images/h_s2.png" alt="Happy worker and supervisor shaking hands with safety equipment around them" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
-                <div class="interactive-element" onclick="revealContent('whySafety')">
+                <!-- MODIFIED: onclick removed -->
+                <div class="interactive-element">
                     <h3>🤔 Click here: Why do accidents happen in food factories?</h3>
-                    <div id="whySafety" class="hidden-content"><p>Most accidents happen because:</p><ul><li>People rush or take shortcuts</li><li>Equipment isn't checked properly</li><li>Training isn't followed</li><li>Safety equipment isn't used</li></ul><p><strong>Good news:</strong> Most accidents can be prevented!</p></div>
+                    <div class="hidden-content"><p>Most accidents happen because:</p><ul><li>People rush or take shortcuts</li><li>Equipment isn't checked properly</li><li>Training isn't followed</li><li>Safety equipment isn't used</li></ul><p><strong>Good news:</strong> Most accidents can be prevented!</p></div>
                 </div>
             </div>
         </div>
         
         <!-- Forklift Section -->
         <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
+            <!-- MODIFIED: onclick removed -->
+            <div class="section-header">
                 <h2>🚛 Forklift Trucks (FLTs) - Staying Safe</h2>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="section-content">
                 <div class="danger-box"><h3>⚠️ Did You Know?</h3><p>Forklift accidents cause serious injuries every year in UK food factories. Many could be prevented with proper safety.</p></div>
                 <div class="safety-tip">
-    <h3>🎬 Watch:FLT Safety for drivers and pedestrians</h3>
-    <p>This short video demonstrates safe FLT use.</p>
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/TZ3rSLb8Usk" 
-                title="FLT Safety Video" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-        </iframe>
-    </div>
-</div>
+                    <h3>🎬 Watch:FLT Safety for drivers and pedestrians</h3>
+                    <p>This short video demonstrates safe FLT use.</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/TZ3rSLb8Usk" title="FLT Safety Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
                 <div class="image-placeholder"><img src="images/flt1.png" alt="Forklift driver doing pre-use checks with checklist in hand" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
                 <h3>Before You Start - Daily Checks</h3>
                 <div class="checklist"><h4>Check These Every Time:</h4><ul><li>Brakes work properly</li><li>Steering moves smoothly</li><li>Forks are not bent or cracked</li><li>Warning lights and horn work</li><li>No oil or water leaks</li><li>Tyres are in good condition</li></ul></div>
-                <div class="interactive-element" onclick="revealContent('fltRules')"><h3>🚦 Click to reveal: The Golden Rules of Forklift Safety</h3><div id="fltRules" class="hidden-content"><ol><li><strong>Speed:</strong> Never go faster than walking pace</li><li><strong>Loads:</strong> Keep forks low when moving</li><li><strong>Corners:</strong> Slow down and sound your horn</li><li><strong>People:</strong> Never let anyone ride on the forklift</li><li><strong>Parking:</strong> Lower forks, apply handbrake, remove key</li></ol></div></div>
+                <!-- MODIFIED: onclick removed -->
+                <div class="interactive-element"><h3>🚦 Click to reveal: The Golden Rules of Forklift Safety</h3><div class="hidden-content"><ol><li><strong>Speed:</strong> Never go faster than walking pace</li><li><strong>Loads:</strong> Keep forks low when moving</li><li><strong>Corners:</strong> Slow down and sound your horn</li><li><strong>People:</strong> Never let anyone ride on the forklift</li><li><strong>Parking:</strong> Lower forks, apply handbrake, remove key</li></ol></div></div>
                 <h3>Working Around Forklifts</h3>
                 <div class="hazard-card"><h4>👥 If You're NOT the Driver</h4><ul><li>Stay away from operating forklifts</li><li>Never walk under raised loads</li><li>Make eye contact with drivers before crossing their path</li><li>Use designated walkways</li></ul></div>
                 <div class="image-placeholder"><img src="images/flt2.png" alt="Split scene showing WRONG (person walking under raised load) vs RIGHT (person using safe walkway)" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
                 <div class="warning-box"><h3>🚨 Real Example</h3><p>A worker fell 8 metres from forklift forks when trying to change a light bulb. The company was fined £200,000. <strong>Never stand on forklift forks or pallets for any reason!</strong></p></div>
-                <div class="interactive-element" onclick="revealContent('fltEmergency')"><h3>🆘 What to do in an emergency?</h3><div id="fltEmergency" class="hidden-content"><ul><li>Stop the forklift immediately</li><li>Apply the handbrake</li><li>Turn off the engine</li><li>Get help from a supervisor</li><li>Report the incident</li></ul></div></div>
+                <!-- MODIFIED: onclick removed -->
+                <div class="interactive-element"><h3>🆘 What to do in an emergency?</h3><div class="hidden-content"><ul><li>Stop the forklift immediately</li><li>Apply the handbrake</li><li>Turn off the engine</li><li>Get help from a supervisor</li><li>Report the incident</li></ul></div></div>
                 
-                <!-- KNOWLEDGE CHECK FOR FORKLIFTS -->
-                <div class="knowledge-check" data-section="2">
+                <div class="knowledge-check">
                     <h4>Knowledge Check</h4>
                     <p>What is the most important rule for a pedestrian when walking near an operating forklift?</p>
                     <div class="quiz-options">
@@ -421,7 +430,8 @@
         
         <!-- Pallet Truck Section -->
         <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
+            <!-- MODIFIED: onclick removed -->
+            <div class="section-header">
                 <h2>📦 Pallet Trucks - Manual and Electric</h2>
                 <span class="toggle-icon">▼</span>
             </div>
@@ -433,318 +443,6 @@
                 <div class="warning-box"><h3>⚖️ Weight Limits Matter</h3><ul><li>Manual trucks: Usually 2-3 tonnes maximum</li><li>Check the label on your truck</li><li>Never exceed the limit</li><li>Get help with heavy loads</li></ul></div>
                 <h3>Electric Pallet Trucks</h3>
                 <div class="checklist"><h4>Before Each Use:</h4><ul><li>Battery charge level is good</li><li>Emergency stop button works</li><li>Forks move up and down smoothly</li><li>Steering handle is secure</li><li>Warning devices work</li></ul></div>
-                <div class="interactive-element" onclick="revealContent('palletSafety')"><h3>🎯 Click for: Common Pallet Truck Accidents and How to Avoid Them</h3><div id="palletSafety" class="hidden-content"><table style="width:100%; border-collapse: collapse;"><tr style="background: #f8f9fa;"><th style="border: 1px solid #dee2e6; padding: 8px;">Accident Type</th><th style="border: 1px solid #dee2e6; padding: 8px;">How to Prevent</th></tr><tr><td style="border: 1px solid #dee2e6; padding: 8px;">Trapped fingers</td><td style="border: 1px solid #dee2e6; padding: 8px;">Keep hands away from moving parts</td></tr><tr><td style="border: 1px solid #dee2e6; padding: 8px;">Foot injuries</td><td style="border: 1px solid #dee2e6; padding: 8px;">Wear safety boots, watch your feet</td></tr><tr><td style="border: 1px solid #dee2e6; padding: 8px;">Back strain</td><td style="border: 1px solid #dee2e6; padding: 8px;">Don't overload, get help when needed</td></tr><tr><td style="border: 1px solid #dee2e6; padding: 8px;">Collisions</td><td style="border: 1px solid #dee2e6; padding: 8px;">Look where you're going, sound horn</td></tr></table></div></div>
-                <div class="image-placeholder"><img src="images/pallet_truck.png" alt="Side-by-side comparison of correct vs incorrect pallet truck handling techniques" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
-                
-                <!-- KNOWLEDGE CHECK FOR PALLET TRUCKS -->
-                <div class="knowledge-check" data-section="3">
-                    <h4>Knowledge Check</h4>
-                    <p>What is the recommended way to move a loaded manual pallet truck to ensure the best control and visibility?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option">Pull the load behind you, so you can walk faster.</button>
-                        <button class="quiz-option">It doesn't matter whether you push or pull.</button>
-                        <button class="quiz-option" data-correct="true">Push the load, keeping it in front of you.</button>
-                    </div>
-                    <p class="quiz-feedback"></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Machine Safety Section -->
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>⚙️ Machine Safety & Guarding</h2>
-                <span class="toggle-icon">▼</span>
-            </div>
-            <div class="section-content">
-                <div class="danger-box"><h3>⚠️ Moving Parts are Dangerous!</h3><p>Machines can cause serious injuries like cuts, crushing, or even amputation if you're not careful. Safety guards are there to protect you.</p></div>
-                <div class="image-placeholder"><img src="images/guarding.png" alt="Machine with clear guard vs. worker reaching into unguarded machine with a red 'X' over it" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
-                <div class="warning-box" style="text-align: center; border-color: #dc3545;"><h3 style="font-size: 1.5em; color: #dc3545;">NEVER</h3><p><strong>Tamper with, bypass, or remove a safety guard or interlock while a machine is operating.</strong></p></div>
-                <div class="hazard-card"><h4>What are Guards For?</h4><p>Guards are physical barriers that prevent you from coming into contact with dangerous moving parts, hot surfaces, or electrical hazards.</p></div>
-                <div class="interactive-element" onclick="revealContent('interlocks')"><h3>🤔 Click to learn: What is a Safety Interlock?</h3><div id="interlocks" class="hidden-content"><p>An interlock is a special safety switch connected to a guard (like a gate or door).</p><ul><li>If you open the guard, the interlock automatically stops the machine.</li><li>The machine cannot restart until the guard is closed again.</li><li><strong>Think of it like your microwave:</strong> it stops the second you open the door. Never try to defeat these switches!</li></ul></div></div>
-                <h3>Lockout/Tagout (LOTO) for Cleaning & Maintenance</h3>
-                <div class="safety-tip"><h4>🛑 Before You Clean or Fix a Machine</h4><p>If you need to work on a machine, it must be made safe first using a Lockout/Tagout procedure. This means:</p><ol><li>The machine is turned off.</li><li>The power source (e.g., electrical switch) is locked in the 'OFF' position with a padlock.</li><li>A tag is attached saying "DANGER - DO NOT OPERATE".</li></ol><p><strong>Only trained and authorised staff can perform LOTO.</strong></p></div>
-                <div class="image-placeholder"><img src="images/lockout.png" alt="Worker applying a padlock and tag to an electrical isolation switch" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
-                <div class="checklist"><h4>Your Responsibilities:</h4><ul><li>Never use a machine if the guard is missing or damaged.</li><li>Report any faulty guards or interlocks to your supervisor immediately.</li><li>Do not wear loose clothing, jewellery, or long, untied hair around machinery.</li><li>Follow all LOTO procedures you have been trained on.</li><li>Never try to "fix" a jam while the machine is running.</li></ul></div>
-                
-                <!-- KNOWLEDGE CHECK FOR MACHINE SAFETY -->
-                <div class="knowledge-check" data-section="4">
-                    <h4>Knowledge Check</h4>
-                    <p>You notice a machine's safety guard has been removed for a quick job. What should you do?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" data-correct="true">Do not use the machine and report it to your supervisor immediately.</button>
-                        <button class="quiz-option">Use the machine carefully, just for a moment.</button>
-                        <button class="quiz-option">Try to fix the guard yourself.</button>
-                    </div>
-                    <p class="quiz-feedback"></p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Chemical Safety Section -->
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>🧪 Chemical Safety - COSHH Regulations</h2>
-                <span class="toggle-icon">▼</span>
-            </div>
-            <div class="section-content">
-                 <div class="danger-box"><h3>☢️ Important</h3><p>Food factories use many cleaning chemicals. Under UK COSHH regulations, you must know how to use them safely.</p></div>
-                <div class="image-placeholder"><img src="images/chemical.png" alt="Worker reading chemical label while wearing proper PPE" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
-                <h3>Understanding Chemical Labels</h3>
-                <div class="hazard-card"><h4>🏷️ What to Look For</h4><ul><li><strong>Product name:</strong> What the chemical is called</li><li><strong>Hazard symbols:</strong> Pictures showing dangers</li><li><strong>Signal words:</strong> "Danger" or "Warning"</li><li><strong>Safety instructions:</strong> How to use safely</li><li><strong>First aid info:</strong> What to do if something goes wrong</li></ul></div>
-                <div class="interactive-element" onclick="revealContent('chemicalTypes')"><h3>🧼 Click to see: Common Cleaning Chemicals in Food Factories</h3><div id="chemicalTypes" class="hidden-content"><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;"><div style="background: #fff; padding: 10px; border-radius: 5px; border: 1px solid #ddd;"><h4>Alkaline Cleaners</h4><p>Remove grease and proteins</p><p><strong>Danger:</strong> Burns skin</p></div><div style="background: #fff; padding: 10px; border-radius: 5px; border: 1px solid #ddd;"><h4>Acid Cleaners</h4><p>Remove mineral deposits</p><p><strong>Danger:</strong> Burns skin and eyes</p></div><div style="background: #fff; padding: 10px; border-radius: 5px; border: 1px solid #ddd;"><h4>Sanitisers</h4><p>Kill bacteria and germs</p><p><strong>Danger:</strong> Breathing problems</p></div></div></div></div>
-                <h3>Personal Protective Equipment (PPE)</h3>
-                <div class="checklist"><h4>Always Wear:</h4><ul><li>Chemical-resistant gloves</li><li>Safety goggles or face shield</li><li>Apron or protective clothing</li><li>Non-slip safety boots</li><li>Respirator if required</li></ul></div>
-                <div class="warning-box"><h3>🚿 Spill Procedures</h3><ol><li><strong>Stop:</strong> Don't panic</li><li><strong>Contain:</strong> Stop the spill spreading</li><li><strong>Alert:</strong> Tell others in the area</li><li><strong>Clean:</strong> Follow the data sheet instructions</li><li><strong>Report:</strong> Tell your supervisor</li></ol></div>
-                <div class="image-placeholder"><img src="images/spill_clean.png" alt="Step-by-step spill cleanup procedure with worker in full PPE" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
-                <div class="interactive-element" onclick="revealContent('firstAid')"><h3>🩹 Emergency First Aid for Chemical Contact</h3><div id="firstAid" class="hidden-content"><div style="background: #fff; padding: 15px; border-radius: 5px;"><h4>If chemicals get on skin:</h4><ul><li>Remove contaminated clothing</li><li>Rinse with water for at least 20 minutes</li><li>Get medical help</li></ul><h4>If chemicals get in eyes:</h4><ul><li>Rinse with clean water for at least 20 minutes</li><li>Hold eyelids open</li><li>Get medical help immediately</li></ul><h4>If chemicals are swallowed:</h4><ul><li>DO NOT make the person sick</li><li>Rinse mouth with water</li><li>Get medical help immediately</li></ul></div></div></div>
-                
-                <!-- KNOWLEDGE CHECK FOR CHEMICALS -->
-                <div class="knowledge-check" data-section="5">
-                    <h4>Knowledge Check</h4>
-                    <p>If you accidentally splash a cleaning chemical in your eyes, what is the first and most important action?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option">Rub your eyes to get the chemical out.</button>
-                        <button class="quiz-option">Find your supervisor before doing anything else.</button>
-                        <button class="quiz-option" data-correct="true">Immediately rinse your eyes with clean water for at least 20 minutes.</button>
-                    </div>
-                    <p class="quiz-feedback"></p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Ladder Safety Section -->
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>🪜 Ladder Safety - Working at Height</h2>
-                <span class="toggle-icon">▼</span>
-            </div>
-            <div class="section-content">
-                <div class="warning-box"><h3>📊 UK Statistics</h3><p>Falls from height cause about 40 deaths and thousands of injuries each year in UK workplaces. Many involve ladders.</p></div>
-              <div class="safety-tip">
-    <h3>🎬 Watch: Ladder Safety</h3>
-    <p>This short video demonstrates safe ladder use.</p>
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/OrOmJdA1bOg" 
-                title="Ladder Safety Video" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-        </iframe>
-    </div>
-</div>
-                <div class="image-placeholder"><img src="images/ladder1.png" alt="Worker inspecting ladder before use with checklist" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
-                <h3>Before You Climb - Ladder Inspection</h3>
-                <div class="checklist"><h4>Check Every Time:</h4><ul><li>Rungs are not bent, cracked or missing</li><li>Side rails are straight and undamaged</li><li>Feet have good grip pads</li><li>Locks and hinges work properly</li><li>No oil, grease or other slippery substances</li><li>Labels are clear and readable</li></ul></div>
-                <div class="interactive-element" onclick="revealContent('ladderSetup')"><h3>📐 The 4-to-1 Rule - Click to Learn</h3><div id="ladderSetup" class="hidden-content"><div style="background: #fff; padding: 15px; border-radius: 5px;"><h4>How to position your ladder safely:</h4><p>For every 4 units of height, the bottom should be 1 unit away from the wall.</p><p><strong>Example:</strong> If the ladder reaches 4 metres high, place the bottom 1 metre from the wall.</p><ul><li>Too steep = ladder falls backwards</li><li>Too shallow = ladder slides out</li><li>Just right = safe and stable</li></ul></div></div></div>
-                <div class="image-placeholder"><img src="images/ladder2.png" alt="Diagram showing correct 4-to-1 angle with measurements" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
-                <h3>The Three-Point Contact Rule</h3>
-                <div class="safety-tip"><h4>🤝 Always Keep Three Points of Contact</h4><p>This means either:</p><ul><li>Two hands and one foot on the ladder, OR</li><li>Two feet and one hand on the ladder</li></ul><p><strong>Never:</strong> Carry tools in your hands while climbing. Use a tool belt or rope.</p></div>
-                <div class="danger-box"><h3>🚫 When NOT to Use Ladders</h3><ul><li>In high winds or bad weather</li><li>When you feel dizzy or unwell</li><li>For tasks lasting more than 30 minutes</li><li>When you need both hands to work</li><li>Near electrical equipment when wet</li></ul></div>
-                <div class="interactive-element" onclick="revealContent('alternatives')"><h3>🔧 Click for: Better Alternatives to Ladders</h3><div id="alternatives" class="hidden-content"><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;"><div style="background: #fff; padding: 10px; border-radius: 5px; border: 1px solid #ddd;"><h4>Mobile Steps</h4><p>Safer for frequent use</p><p>Better stability</p></div><div style="background: #fff; padding: 10px; border-radius: 5px; border: 1px solid #ddd;"><h4>Scaffolding</h4><p>For longer jobs</p><p>More space to work</p></div><div style="background: #fff; padding: 10px; border-radius: 5px; border: 1px solid #ddd;"><h4>Lifting Platform</h4><p>Powered access</p><p>Best for high work</p></div></div></div></div>
-                <div class="image-placeholder"><img src="images/ladder_safety.png" alt="Split scene showing dangerous ladder use vs safe alternative equipment" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
-                
-                <!-- KNOWLEDGE CHECK FOR LADDERS -->
-                <div class="knowledge-check" data-section="6">
-                    <h4>Knowledge Check</h4>
-                    <p>When climbing or descending a ladder, what does the 'three-point contact' rule mean?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" data-correct="true">Always keep two hands and one foot, OR two feet and one hand, on the ladder.</button>
-                        <button class="quiz-option">The ladder must touch the wall, the floor, and you.</button>
-                        <button class="quiz-option">You must use at least three screws to fix the ladder to the wall.</button>
-                    </div>
-                    <p class="quiz-feedback"></p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Manual Handling Section -->
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>💪 Manual Handling - Protect Your Back</h2>
-                <span class="toggle-icon">▼</span>
-            </div>
-            <div class="section-content">
-                <div class="danger-box"><h3>📈 The Facts</h3><p>Manual handling injuries account for around one-third of all workplace injuries in UK food factories. Most affect the back.</p></div>
-                <div class="safety-tip"><h3>🎬 Watch: Safe Lifting Technique</h3><p>This short video demonstrates the correct way to lift.</p><div class="video-container"><iframe src="https://www.youtube.com/embed/watch?v=KIMSsJunXB4&list=PLUgskOJdB41D2EtYERS4WSsvwCvp3sulI&index=4" title="Safe Manual Handling Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></div>
-                <div class="image-placeholder"><img src="images/manual.png" alt="Worker demonstrating proper lifting technique with bent knees, straight back" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
-                <h3>Safe Lifting Technique</h3>
-                <div class="checklist"><h4>The LITE Method:</h4><ul><li><strong>L</strong>ook at the load - check weight and contents</li><li><strong>I</strong>ndividual capability - can you manage it?</li><li><strong>T</strong>ask requirements - how far to carry?</li><li><strong>E</strong>nvironment - is the route clear?</li></ul></div>
-                <div class="interactive-element" onclick="revealContent('liftingSteps')"><h3>📋 Click for: Step-by-Step Safe Lifting</h3><div id="liftingSteps" class="hidden-content"><ol><li><strong>Plan your lift:</strong> Where will you put the load?</li><li><strong>Position yourself:</strong> Feet apart, one slightly forward</li><li><strong>Get a good grip:</strong> Use both hands, fingers underneath</li><li><strong>Bend your knees:</strong> Keep your back straight</li><li><strong>Lift smoothly:</strong> No sudden movements</li><li><strong>Keep load close:</strong> Hold it against your body</li><li><strong>Move your feet:</strong> Don't twist your back</li><li><strong>Put down carefully:</strong> Same technique in reverse</li></ol></div></div>
-                <div class="warning-box"><h3>⚖️ Weight Guidelines</h3><p>Maximum safe lifting weights (healthy adults):</p><ul><li><strong>Men:</strong> 25kg from waist height</li><li><strong>Women:</strong> 16kg from waist height</li><li><strong>Overhead lifting:</strong> Much less - get help!</li><li><strong>If you're unsure:</strong> Ask for help or use equipment</li></ul></div>
-                <div class="image-placeholder"><img src="images/lift.png" alt="Comparison showing wrong way (bent back) vs right way (bent knees) of lifting" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
-                <h3>Team Lifting</h3>
-                <div class="safety-tip"><h4>👥 When Two People Lift Together</h4><ul><li>Choose people of similar height</li><li>One person gives the commands</li><li>Practice the lift first</li><li>Move at the pace of the slower person</li><li>Communicate throughout</li></ul></div>
-                <div class="interactive-element" onclick="revealContent('mechanicalAids')"><h3>🔧 Click to see: Mechanical Aids Available</h3><div id="mechanicalAids" class="hidden-content"><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;"><div style="background: #fff; padding: 10px; border-radius: 5px; border: 1px solid #ddd;"><h4>Wheeled Trolleys</h4><p>Move loads horizontally</p><p>Reduce carrying</p></div><div style="background: #fff; padding: 10px; border-radius: 5px; border: 1px solid #ddd;"><h4>Conveyor Belts</h4><p>Automatic movement</p><p>Reduce manual handling</p></div><div style="background: #fff; padding: 10px; border-radius: 5px; border: 1px solid #ddd;"><h4>Lifting Tables</h4><p>Adjust working height</p><p>Reduce bending</p></div><div style="background: #fff; padding: 10px; border-radius: 5px; border: 1px solid #ddd;"><h4>Vacuum Lifters</h4><p>Lift awkward items</p><p>Reduce manual effort</p></div></div></div></div>
-                <div class="hazard-card"><h4>🧠 Know Your Limits</h4><p>Don't try to be a hero! If you:</p><ul><li>Have back problems</li><li>Feel unwell</li><li>Are tired</li><li>Are unsure about the weight</li></ul><p><strong>Then ask for help or use equipment!</strong></p></div>
-                
-                <!-- KNOWLEDGE CHECK FOR MANUAL HANDLING -->
-                <div class="knowledge-check" data-section="7">
-                    <h4>Knowledge Check</h4>
-                    <p>What is the single most important part of a correct manual lifting technique to protect your back?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option">Lifting as quickly as possible to get it over with.</button>
-                        <button class="quiz-option" data-correct="true">Bending your knees and keeping your back straight.</button>
-                        <button class="quiz-option">Keeping your legs straight and bending your back to reach the load.</button>
-                    </div>
-                    <p class="quiz-feedback"></p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Summary Section -->
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <h2>📝 Summary and Assessment</h2>
-                <span class="toggle-icon">▼</span>
-            </div>
-            <div class="section-content">
-                <div class="safety-tip"><h3>🎉 Well Done!</h3><p>You've completed all the training sections. Here's a quick reminder of the key points:</p></div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;">
-                    <div class="hazard-card"><h4>🚛 Forklifts</h4><ul><li>Daily safety checks</li><li>Walking pace only</li><li>Never carry passengers</li><li>Stay away from moving trucks</li></ul></div>
-                    <div class="hazard-card"><h4>📦 Pallet Trucks</h4><ul><li>Check before use</li><li>Don't exceed weight limits</li><li>Push, don't pull</li><li>Watch where you're going</li></ul></div>
-                    <div class="hazard-card"><h4>⚙️ Machines</h4><ul><li>Never bypass guards</li><li>Report damaged guards</li><li>Follow LOTO procedures</li><li>No loose clothing</li></ul></div>
-                    <div class="hazard-card"><h4>🧪 Chemicals</h4><ul><li>Read labels carefully</li><li>Wear correct PPE</li><li>Know spill procedures</li><li>Report incidents</li></ul></div>
-                    <div class="hazard-card"><h4>🪜 Ladders</h4><ul><li>Inspect before use</li><li>Use 4-to-1 rule</li><li>Three-point contact</li><li>Consider alternatives</li></ul></div>
-                    <div class="hazard-card"><h4>💪 Manual Handling</h4><ul><li>Use LITE method</li><li>Bend knees, not back</li><li>Know your limits</li><li>Use mechanical aids</li></ul></div>
-                </div>
-                <div class="warning-box"><h3>🔗 Remember</h3><p>Health and safety is everyone's responsibility. If you see something unsafe:</p><ul><li>Stop the activity if it's immediately dangerous</li><li>Report it to your supervisor</li><li>Help fix the problem</li><li>Don't ignore it!</li></ul></div>
-                <div class="image-placeholder"><img src="images/h_s.png" alt="Group of diverse factory workers all giving thumbs up with safety equipment visible" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
-                <div style="text-align: center; margin: 30px 0;">
-                    <h3>Ready for Your Assessment?</h3>
-                    <p>Click the button below to take your Level 2 Health & Safety quiz.</p>
-                    <p><strong>You need 80% to pass (16 out of 20 questions correct)</strong></p>
-                    <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=kwUl-gL0HEmwt61NYzBnUmEnHjTZ8XFAti5gOD7EzBVUMUZVUVFGWldYUE5MNzFYVjAxRUpZNzczNi4u" class="quiz-button" target="_blank">🎯 Take Assessment Quiz</a>
-                    <div style="margin-top: 20px; font-size: 0.9em; color: #666;"><p>The quiz will open in a new window. You have unlimited attempts.</p><p>Return to this page once you've completed the quiz.</p></div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer -->
-        <div style="text-align: center; margin: 40px 0; padding: 20px; background: #f8f9fa; border-radius: 10px;">
-            <h3>📞 Need Help?</h3>
-            <p>If you have any questions about health and safety:</p>
-            <ul style="list-style: none; padding: 0;">
-                <li>📧 Email: sam@lovehilltop.com</li>
-                <li>📞 Phone: 07722838533</li>
-                <li>🚨 Emergency: 999</li>
-            </ul>
-            <p style="margin-top: 20px; font-size: 0.8em; color: #666;">This training meets UK Level 2 Health & Safety standards and complies with the Health and Safety at Work Act 1974, COSHH Regulations 2002, and Work at Height Regulations 2005.</p>
-        </div>
-    </div>
-    
-    <script>
-        const totalSections = 7; 
-
-        function toggleSection(header) {
-            const section = header.parentElement;
-            
-            document.querySelectorAll('.section.active').forEach(openSection => {
-                if (openSection !== section) {
-                    openSection.classList.remove('active');
-                }
-            });
-            
-            section.classList.toggle('active');
-
-            if (section.classList.contains('active')) {
-                header.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-
-            if (section.classList.contains('active') && !section.hasAttribute('data-completed')) {
-                const isLearningSection = !section.querySelector('h2').textContent.includes('Summary');
-                if (isLearningSection) {
-                    section.setAttribute('data-completed', 'true');
-                    updateProgress();
-                }
-            }
-        }
-
-        function updateProgress() {
-            const completedSections = document.querySelectorAll('.section[data-completed]').length;
-            const percentage = Math.round((completedSections / totalSections) * 100);
-            const progressBar = document.getElementById('progressBar');
-            
-            progressBar.style.width = percentage + '%';
-            progressBar.textContent = percentage + '% Complete';
-            
-            if (percentage >= 100) {
-                progressBar.textContent = '🎉 Training Complete!';
-                progressBar.style.background = 'linear-gradient(90deg, #28a745, #20c997)';
-            }
-        }
-
-        function revealContent(id) {
-            const content = document.getElementById(id);
-            const parent = content.parentElement;
-            
-            if (content.style.display === 'block') {
-                content.style.display = 'none';
-                parent.style.background = '#e3f2fd';
-            } else {
-                content.style.display = 'block';
-                parent.style.background = '#bbdefb';
-            }
-            event.stopPropagation();
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const firstSection = document.querySelector('.section');
-            if (firstSection) {
-                firstSection.setAttribute('data-completed', 'true');
-                updateProgress();
-            }
-
-            const quizButtons = document.querySelectorAll('.quiz-option');
-            quizButtons.forEach(button => {
-                button.addEventListener('click', handleQuizAnswer);
-            });
-        });
-
-        function handleQuizAnswer(event) {
-            const clickedButton = event.target;
-            const knowledgeCheck = clickedButton.closest('.knowledge-check');
-            const feedbackEl = knowledgeCheck.querySelector('.quiz-feedback');
-            
-            if (knowledgeCheck.classList.contains('answered')) {
-                return;
-            }
-            knowledgeCheck.classList.add('answered');
-
-            const isCorrect = clickedButton.dataset.correct === 'true';
-
-            if (isCorrect) {
-                clickedButton.classList.add('correct');
-                feedbackEl.textContent = 'Correct! Well done. Moving to the next section...';
-                feedbackEl.className = 'quiz-feedback correct';
-
-                const currentSection = knowledgeCheck.closest('.section');
-                const nextSection = currentSection.nextElementSibling;
-                
-                setTimeout(() => {
-                    currentSection.classList.remove('active');
-                    if (nextSection && nextSection.classList.contains('section')) {
-                        nextSection.querySelector('.section-header').click();
-                    }
-                }, 2000);
-
-            } else {
-                clickedButton.classList.add('incorrect');
-                feedbackEl.textContent = 'Not quite. The correct answer is highlighted. Please review and try again.';
-                feedbackEl.className = 'quiz-feedback incorrect';
-                
-                const correctButton = knowledgeCheck.querySelector('[data-correct="true"]');
-                correctButton.classList.add('correct');
-
-                // Allow user to try again after a delay
-                setTimeout(() => {
-                    knowledgeCheck.classList.remove('answered');
-                    clickedButton.classList.remove('incorrect');
-                    correctButton.classList.remove('correct');
-                    feedbackEl.textContent = '';
-                }, 4000);
-            }
-        }
-    </script>
-</body>
-</html>
+                <!-- MODIFIED: onclick removed -->
+                <div class="interactive-element"><h3>🎯 Click for: Common Pallet Truck Accidents and How to Avoid Them</h3><div class="hidden-content"><table style="width:100%; border-collapse: collapse;"><tr style="background: #f8f9fa;"><th style="border: 1px solid #dee2e6; padding: 8px;">Accident Type</th><th style="border: 1px solid #dee2e6; padding: 8px;">How to Prevent</th></tr><tr><td style="border: 1px solid #dee2e6; padding: 8px;">Trapped fingers</td><td style="border: 1px solid #dee2e6; padding: 8px;">Keep hands away from moving parts</td></tr><tr><td style="border: 1px solid #dee2e6; padding: 8px;">Foot injuries</td><td style="border: 1px solid #dee2e6; padding: 8px;">Wear safety boots, watch your feet</td></tr><tr><td style="border: 1px solid #dee2e6; padding: 8px;">Back strain</td><td style="border: 1px solid #dee2e6; padding: 8px;">Don't overload, get help when needed</td></tr><tr><td style="border: 1px solid #dee2e6; padding: 8px;">Collisions</td><td style="border: 1px solid #dee2e6; padding: 8px;">Look where you're going, sound horn</td></tr></table></div></div>
+                <div class="image-placeholder"><img src="images/pallet_truck.png" alt
