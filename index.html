@@ -506,6 +506,16 @@
                     <h3>🤔 Click here: Why do experienced workers still have accidents?</h3>
                     <div id="whyRefresher" class="hidden-content"><p>Even experienced workers have accidents because:</p><ul><li>Complacency - taking shortcuts when familiar with tasks</li><li>Changed conditions - new equipment, layouts, or procedures</li><li>Skill decay - safety habits can deteriorate over time</li><li>Fatigue and stress - affecting decision-making</li><li>New hazards - processes and risks change</li></ul><p><strong>Remember:</strong> Experience doesn't make you immune to accidents!</p></div>
                 </div>
+
+                <div class="knowledge-check" data-section="0">
+                    <h3>🧠 Knowledge Check: Refresher Training</h3>
+                    <p>What is the main reason experienced workers still benefit from regular safety refresher training?</p>
+                    <div class="quiz-option" data-correct="false">A) It's a legal requirement only</div>
+                    <div class="quiz-option" data-correct="false">B) New employees need to see others being trained</div>
+                    <div class="quiz-option" data-correct="true">C) Complacency and changing conditions can create new risks even for experienced workers</div>
+                    <div class="quiz-option" data-correct="false">D) It's just company policy with no real benefit</div>
+                    <div class="quiz-feedback"></div>
+                </div>
             </div>
         </div>
         
@@ -1000,7 +1010,7 @@
                     // Show correct/incorrect styling
                     if (isCorrect) {
                         this.classList.add('correct');
-                        feedback.textContent = '✅ Correct! Well done.';
+                        feedback.textContent = '✅ Correct! Well done. You can now proceed to the next section.';
                         feedback.classList.add('correct');
                         
                         // Unlock next section
@@ -1014,8 +1024,11 @@
                                 opt.classList.add('correct');
                             }
                         });
-                        feedback.textContent = '❌ Incorrect. The correct answer is highlighted above. Please review the material.';
+                        feedback.textContent = '❌ Incorrect, but you can still proceed. The correct answer is highlighted above - please review this material.';
                         feedback.classList.add('incorrect');
+                        
+                        // Still unlock next section even if wrong
+                        unlockNextSection(sectionIndex);
                     }
                 });
             });
