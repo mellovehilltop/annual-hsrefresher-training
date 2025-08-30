@@ -5,6 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hilltop Honey - Health & Safety Refresher Training</title>
     <style>
+        <!-- Forklift Section -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🚛 Forklift & Warehouse Transport Updates</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="danger-box"><h3>⚠️ Recent Industry Statistics</h3><p>UK HSE data shows forklift accidents remain a major cause of workplace fatalities in food manufacturing. Stay alert!</p></div>
+                <div class="safety-tip"><h3>🔧 Daily Checks Are Critical</h3><p>Pre-use inspections catch 70% of potential equipment failures. Never skip these checks, even when you're in a rush to meet production targets.</p></div>
+                <div class="checklist"><h4>Essential Daily FLT Checks:</h4><ul><li>Tires and wheels - look for wear or damage</li><li>Hydraulics - check for leaks or unusual noises</li><li>Brakes - test effectiveness before moving loads</li><li>Warning devices - horn and flashing lights</li><li>Forks and attachments - check for cracks or bends</li><li>Seatbelt and ROPS - ensure proper function</li></ul></div>
+                <div class="image-placeholder"><img src="images/forklift.png" alt="Forklift daily inspection checklist being completed by worker" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
+                <h3>Speed Limits Save Lives</h3>
+                <div class="warning-box"><h4>🚨 Warehouse Speed Limits</h4><ul><li><strong>Production areas:</strong> Walking pace only (max 5mph)</li><li><strong>Warehouse aisles:</strong> Maximum 8mph</li><li><strong>Loading bays:</strong> 3mph maximum</li><li><strong>Near pedestrians:</strong> Always reduce speed</li></ul><p><strong>Remember:</strong> Meeting OEE targets is never worth risking someone's safety!</p></div>
+                
+                <div class="interactive-element" onclick="revealContent('fltIncident')">
+                    <h3>📊 Click to see: Common FLT Incident Causes</h3>
+                    <div id="fltIncident" class="hidden-content">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
+                                <h4>Pedestrian Strikes</h4>
+                                <p>Most serious incidents</p>
+                                <p><strong>Prevention:</strong> Use segregated walkways</p>
+                            </div>
+                            <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
+                                <h4>Load Falls</h4>
+                                <p>Caused by overloading</p>
+                                <p><strong>Prevention:</strong> Check weight limits</p>
+                            </div>
+                            <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
+                                <h4>Tip-overs</h4>
+                                <p>Speed and sharp turns</p>
+                                <p><strong>Prevention:</strong> Slow down on turns</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="knowledge-check" onclick="handleQuiz(this, 0)">
+                    <h3>🧠 Knowledge Check: FLT Safety</h3>
+                    <p>What should you do if you notice hydraulic fluid under your forklift during daily checks?</p>
+                    <div class="quiz-option" data-correct="false">A) Clean it up and carry on - small leaks are normal</div>
+                    <div class="quiz-option" data-correct="false">B) Make a note to report it at the end of shift</div>
+                    <div class="quiz-option" data-correct="true">C) Stop using the truck immediately and report to engineering</div>
+                    <div class="quiz-option" data-correct="false">D) Only worry if the leak gets bigger</div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chemicals Section -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🧪 Chemical Safety in Food Production</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="warning-box"><h3>🏭 Food Factory Specific Risks</h3><p>In honey, syrup, and fruit processing, we use stronger cleaning chemicals to deal with sticky residues. These require extra care and proper PPE.</p></div>
+                <div class="image-placeholder"><img src="images/chemical.png" alt="Worker reading chemical label while wearing proper PPE" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
+                
+                <h3>Chemical Storage and Handling Updates</h3>
+                <div class="hazard-card"><h4>🏷️ New Labelling System</h4><p>We've updated our chemical labelling to include:</p><ul><li><strong>QR codes</strong> for instant access to safety data sheets</li><li><strong>Colour coding</strong> by risk level (red = high, amber = medium, green = low)</li><li><strong>PPE pictograms</strong> showing exactly what protection is needed</li><li><strong>Dilution ratios</strong> clearly marked to prevent over-concentration</li></ul></div>
+                
+                <div class="interactive-element" onclick="revealContent('chemicalTypes')">
+                    <h3>🧼 Click to see: Chemicals Used in Our Operations</h3>
+                    <div id="chemicalTypes" class="hidden-content">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+                            <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
+                                <h4>Alkaline CIP Cleaners</h4>
+                                <p>Remove honey and syrup residues</p>
+                                <p><strong>Risk:</strong> Severe burns, eye damage</p>
+                                <p><strong>PPE:</strong> Goggles, gloves, apron</p>
+                            </div>
+                            <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
+                                <h4>Acid Rinse Aids</h4>
+                                <p>Remove mineral deposits</p>
+                                <p><strong>Risk:</strong> Chemical burns, respiratory</p>
+                                <p><strong>PPE:</strong> Face shield, respirator</p>
+                            </div>
+                            <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
+                                <h4>Sanitising Solutions</h4>
+                                <p>Final disinfection step</p>
+                                <p><strong>Risk:</strong> Skin irritation, fumes</p>
+                                <p><strong>PPE:</strong> Gloves, ventilation</p>
+                            </div>
+                            <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
+                                <h4>Parts Washer Solvents</h4>
+                                <p>Engineering maintenance cleaning</p>
+                                <p><strong>Risk:</strong> Fire, toxic fumes</p>
+                                <p><strong>PPE:</strong> Full respiratory protection</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Spill Response Procedures</h3>
+                <div class="warning-box"><h3>🚿 Updated Spill Response</h3><ol><li><strong>STOP:</strong> Secure the area and alert others</li><li><strong>ASSESS:</strong> Check QR code for specific spill procedures</li><li><strong>CONTAIN:</strong> Use spill kit appropriate to chemical type</li><li><strong>NEUTRALISE:</strong> Follow SDS instructions exactly</li><li><strong>CLEAN:</strong> Dispose of waste in designated containers</li><li><strong>REPORT:</strong> Complete incident form and notify Sam Garrod</li></ol></div>
+                <div class="image-placeholder"><img src="images/spill_clean.png" alt="Step-by-step spill cleanup procedure with worker in full PPE" style="width:100%; max-width:400px; display:block; margin:auto; border-radius: 8px;"></div>
+                
+                <div class="knowledge-check" onclick="handleQuiz(this, 1)">
+                    <h3>🧠 Knowledge Check: Chemical Safety</h3>
+                    <p>What's the first thing you should do when you discover a chemical spill?</p>
+                    <div class="quiz-option" data-correct="false">A) Start cleaning it up immediately</div>
+                    <div class="quiz-option" data-correct="true">B) Stop and alert others in the area to the hazard</div>
+                    <div class="quiz-option" data-correct="false">C) Find the safety data sheet</div>
+                    <div class="quiz-option" data-correct="false">D) Get the spill kit</div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+        </div>
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +130,8 @@
         }
 
         .container {
-            max-width: 900px; /* Slightly wider for better readability */
+            max-width: 95%; /* Use most of the screen width */
+            width: 1200px; /* Maximum width for very wide screens */
             margin: 0 auto;
             padding: 25px;
         }
@@ -733,7 +843,7 @@
     </div>
     
     <script>
-        const totalSections = 7; 
+        const totalSections = 8; // Updated to include all sections 
         let answeredQuestions = [];
 
         function toggleSection(header) {
@@ -780,10 +890,12 @@
 
         function revealContent(contentId) {
             const content = document.getElementById(contentId);
-            if (content.style.display === 'block') {
-                content.style.display = 'none';
-            } else {
-                content.style.display = 'block';
+            if (content) {
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                } else {
+                    content.style.display = 'block';
+                }
             }
         }
 
